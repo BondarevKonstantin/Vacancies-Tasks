@@ -14,7 +14,7 @@ const TableScreen = () => {
           {pokemonsData.map((pokemon) => {
             return (
               <li key={pokemon.id} className='pokemons-block-list-item'>
-                <Link to={`/pokemon/${pokemon.id}`}>
+                <Link to={`/pokemons/details/${pokemon.id}`}>
                   <strong>{pokemon.name}</strong>
                 </Link>
               </li>

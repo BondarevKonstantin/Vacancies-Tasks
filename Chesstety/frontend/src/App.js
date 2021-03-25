@@ -12,7 +12,7 @@ const App = () => {
       <main className='py-4'>
         <Container>
           <Route path='/pokemons' component={TableScreen} exact />
-          <Route path='/pokemon/:id' component={PokemonScreen} />
+          <Route path='/pokemons/details/:id' component={PokemonScreen} />
         </Container>
       </main>
     </Router>
