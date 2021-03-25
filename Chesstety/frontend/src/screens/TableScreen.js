@@ -1,4 +1,6 @@
 import React from "react"
+import { Link } from "react-router-dom"
+
 import pokemons from "../pokemons"
 
 let pokemonsData = pokemons.cards
@@ -12,9 +14,9 @@ const TableScreen = () => {
           {pokemonsData.map((pokemon) => {
             return (
               <li key={pokemon.id} className='pokemons-block-list-item'>
-                <a href={`/pokemon/${pokemon.id}`}>
+                <Link to={`/pokemon/${pokemon.id}`}>
                   <strong>{pokemon.name}</strong>
-                </a>
+                </Link>
               </li>
             )
           })}
