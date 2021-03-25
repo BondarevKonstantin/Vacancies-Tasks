@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 import { Link } from "react-router-dom"
 
 import {
@@ -10,11 +11,25 @@ import {
   Image,
   Table,
 } from "react-bootstrap"
-import pokemons from "../pokemons"
-let pokemonsData = pokemons.cards
 
 const PokemonScreen = ({ match }) => {
-  const pokemon = pokemonsData.find((item) => item.id === match.params.id)
+  const [pokemon, setPokemon] = useState({
+    types: [],
+    attacks: [],
+    weaknesses: [],
+  })
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      const { data } = await axios.get(
+        `https://api.pokemontcg.io/v1/cards/${match.params.id}`
+      )
+
+      setPokemon(data.card)
+    }
+
+    fetchPokemon()
+  }, [match])
 
   const reloadDataHandler = () => {
     console.log(4)
@@ -27,6 +42,15 @@ const PokemonScreen = ({ match }) => {
           Back to table
         </Button>
       </Link>
+      <Button
+        className='mt-2'
+        variant='outline-info'
+        size='lg'
+        block
+        onClick={reloadDataHandler}
+      >
+        Reload data
+      </Button>
       <Card className='mt-3'>
         <Card.Body>
           <Row>
