@@ -85,59 +85,66 @@ const PokemonScreen = ({ match, history }) => {
               </Row>
               <Card className='mt-4'>
                 <Card.Body>
-                  <h2 className='text-center'>Attacks</h2>
-                  {pokemon.attacks.map((attack) => {
-                    return (
-                      <ListGroup className='mt-4'>
-                        <ListGroup.Item className='text-center'>
-                          <h3>{attack.name}</h3>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item className='text-center'>
-                          <strong>Cost:</strong>{" "}
-                          {attack.cost.map((cost, index) => {
-                            return index !== attack.cost.length - 1
-                              ? cost + ",  "
-                              : cost
-                          })}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item className='text-center'>
-                          <strong>Description:</strong> {attack.text}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item className='text-center'>
-                          <strong>Damage:</strong> {attack.damage}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item className='text-center'>
-                          <strong>Energy Cost:</strong>{" "}
-                          {attack.convertedEnergyCost}
-                        </ListGroup.Item>
-                      </ListGroup>
-                    )
-                  })}
-
-                  <h2 className='text-center mt-5'>Weaknesses</h2>
-
-                  <Table className='mt-4' striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th>Type</th>
-                        <th>Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {pokemon.weaknesses.map((weakness) => {
+                  {pokemon.attacks ? (
+                    <>
+                      <h2 className='text-center'>Attacks</h2>
+                      {pokemon.attacks.map((attack) => {
                         return (
-                          <tr>
-                            <td>{weakness.type}</td>
-                            <td>{weakness.value}</td>
-                          </tr>
+                          <ListGroup className='mt-4'>
+                            <ListGroup.Item className='text-center'>
+                              <h3>{attack.name}</h3>
+                            </ListGroup.Item>
+
+                            <ListGroup.Item className='text-center'>
+                              <strong>Cost:</strong>{" "}
+                              {attack.cost.map((cost, index) => {
+                                return index !== attack.cost.length - 1
+                                  ? cost + ",  "
+                                  : cost
+                              })}
+                            </ListGroup.Item>
+
+                            <ListGroup.Item className='text-center'>
+                              <strong>Description:</strong> {attack.text}
+                            </ListGroup.Item>
+
+                            <ListGroup.Item className='text-center'>
+                              <strong>Damage:</strong> {attack.damage}
+                            </ListGroup.Item>
+
+                            <ListGroup.Item className='text-center'>
+                              <strong>Energy Cost:</strong>{" "}
+                              {attack.convertedEnergyCost}
+                            </ListGroup.Item>
+                          </ListGroup>
                         )
                       })}
-                    </tbody>
-                  </Table>
+                    </>
+                  ) : null}
+
+                  {pokemon.weaknesses ? (
+                    <>
+                      <h2 className='text-center mt-5'>Weaknesses</h2>
+                      <Table className='mt-4' striped bordered hover>
+                        <thead>
+                          <tr>
+                            <th>Type</th>
+                            <th>Value</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {pokemon.weaknesses.map((weakness) => {
+                            return (
+                              <tr>
+                                <td>{weakness.type}</td>
+                                <td>{weakness.value}</td>
+                              </tr>
+                            )
+                          })}
+                        </tbody>
+                      </Table>
+                    </>
+                  ) : null}
                 </Card.Body>
               </Card>
             </Card.Body>

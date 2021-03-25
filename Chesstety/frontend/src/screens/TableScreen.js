@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { listPokemons } from "../actions/pokemonActions"
 
 import { Link } from "react-router-dom"
-import { Button, Spinner } from "react-bootstrap"
+import { Button, Spinner, Card } from "react-bootstrap"
 
 const TableScreen = () => {
   const dispatch = useDispatch()
@@ -38,19 +38,21 @@ const TableScreen = () => {
       ) : error ? (
         <h3>{error}</h3>
       ) : (
-        <div className='pokemons-block'>
-          <ul className='pokemons-block-list'>
-            {pokemons.map((pokemon) => {
-              return (
-                <li key={pokemon.id} className='pokemons-block-list-item'>
-                  <Link to={`/pokemons/details/${pokemon.id}`}>
-                    <strong>{pokemon.name}</strong>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+        <Card className='pokemons-block mt-2'>
+          <Card.Body className='text-center' style={{ paddingBottom: 0 }}>
+            <ul className='pokemons-block-list mt-3' style={{ columns: 3 }}>
+              {pokemons.map((pokemon) => {
+                return (
+                  <li key={pokemon.id} className='pokemons-block-list-item'>
+                    <Link to={`/pokemons/details/${pokemon.id}`}>
+                      <strong>{pokemon.name}</strong>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </Card.Body>
+        </Card>
       )}
     </>
   )
